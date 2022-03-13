@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2347593145233764281}
   m_Father: {fileID: 0}
@@ -216,15 +217,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particles
       objectReference: {fileID: 0}
+    - target: {fileID: 2277573603172826267, guid: 663ec6cdd07a72446b6e733b10959149, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 663ec6cdd07a72446b6e733b10959149, type: 3}
---- !u!4 &2347593145233764281 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2277573603172826265, guid: 663ec6cdd07a72446b6e733b10959149, type: 3}
-  m_PrefabInstance: {fileID: 4544064511226729248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &2347593145233764280 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2277573603172826264, guid: 663ec6cdd07a72446b6e733b10959149, type: 3}
+  m_PrefabInstance: {fileID: 4544064511226729248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2347593145233764281 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2277573603172826265, guid: 663ec6cdd07a72446b6e733b10959149, type: 3}
   m_PrefabInstance: {fileID: 4544064511226729248}
   m_PrefabAsset: {fileID: 0}

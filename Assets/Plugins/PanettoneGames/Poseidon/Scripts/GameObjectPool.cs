@@ -40,7 +40,6 @@ public class GameObjectPool : ScriptableObject
     public async void ReturnToPool(GameObject objectToReturn, float delay = 0)
     {
         if (objectToReturn == null) return;
-
         
         if (delay > 0)
         {

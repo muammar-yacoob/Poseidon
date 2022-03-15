@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using PanettoneGames;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WeaponLauncher : MonoBehaviour
 {
-    [SerializeField] private GameObjectPool ProjectilePool;
+    [SerializeField] [Tooltip("The GameObjects Pool")] private GameObjectPool ProjectilePool;
 
     [SerializeField] [Range(0.05f, 2f)] private float fireRate = 0.25f;
     [SerializeField] Transform[] firePoints;
     [SerializeField] InputActionAsset playerControls;
+
+
     [SerializeField] [Tooltip("Action Name from your Actions Asset")] string actionName;
     [SerializeField] bool hideOnLaunch;
 
@@ -18,21 +20,18 @@ public class WeaponLauncher : MonoBehaviour
     private InputAction fireKey;
     bool isHeldDown;
 
-    private void Awake() => ProjectilePool.PreWarm();
-
-
     private void OnEnable()
     {
         fireKey = playerControls.FindAction(actionName);
         fireKey.Enable();
-        //fireKey.performed += Fire;
+        //fireKey.performed += Fire; //Single Shot
         fireKey.started += (ctx) => isHeldDown = true;
         fireKey.canceled += (ctx) => isHeldDown = false;
+
+        ProjectilePool.Prewarm();
     }
 
-
     private void OnDisable() => fireKey.Disable();
-
 
     void Update()
     {
@@ -54,6 +53,7 @@ public class WeaponLauncher : MonoBehaviour
     {
         fireTimer = 0;
 
+
         for (int i = 0; i < firePoints.Length; i++)
         {
             var shot = ProjectilePool.Get();
@@ -67,5 +67,7 @@ public class WeaponLauncher : MonoBehaviour
 
         OnFire(firePoints);
     }
+
+
 }
 

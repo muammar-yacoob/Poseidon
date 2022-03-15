@@ -3,63 +3,87 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New GameObject Pool", menuName = "Poseidon/GameObject Pool")]
-public class GameObjectPool : ScriptableObject
+namespace PanettoneGames
 {
-    [SerializeField] GameObject prefab;
-    [SerializeField] int prewarmCount = 20;
-
-    private Queue<GameObject> objects = new Queue<GameObject>();
-    public void PreWarm() => AddObjects(prewarmCount);
-    public GameObject Get()
+    [CreateAssetMenu(fileName = "New GameObject Pool", menuName = "Poseidon/GameObject Pool")]
+    public class GameObjectPool : ScriptableObject
     {
-        if (objects.Count == 0)
-            AddObjects(1);
+        [SerializeField] GameObject prefab;
+        [SerializeField] int prewarmCount = 20;
 
-        return objects.Dequeue();
-    }
-
-    private void AddObjects(int count)
-    {
-        for (int i = 0; i < count; i++)
+        private Queue<GameObject> objects = new Queue<GameObject>();
+        private Transform poolContainer;
+        /// <summary>
+        /// Prewarms the pool with the specified prewarm Count on the GameObjectPool Scriptable Object
+        /// </summary>
+        /// <param name="parentTransform">[Optional] The name of parent transform of the pooled objects</param>
+        public void Prewarm(string parentTransform = null)
         {
-            var newObject = Instantiate(prefab);
-
-            newObject.SetActive(false);
-            objects.Enqueue(newObject);
-            newObject.GetComponent<IGameObjectPooled>().Pool = this;
+            poolContainer = parentTransform == null ? new GameObject(name).transform: new GameObject(parentTransform).transform;
+            AddObjects(prewarmCount);
         }
-    }
 
-    public void ReturnToPool(GameObject objectToReturn)
-    {
-        objectToReturn.SetActive(false);
-        objects.Enqueue(objectToReturn);
-    }
-
-    public async void ReturnToPool(GameObject objectToReturn, float delay = 0)
-    {
-        if (objectToReturn == null) return;
-        
-        if (delay > 0)
+        /// <summary>
+        /// Fetches the next GameObject from the pool
+        /// </summary>
+        /// <returns>An instance of the pooled GameObject</returns>
+        public GameObject Get()
         {
-            //Disable Visuals
-            var rends = objectToReturn.GetComponents<Renderer>().ToList();
-            rends.ForEach(r => r.enabled = false);
+            if (objects.Count == 0)
+                AddObjects(1);
 
-            //Induce some delay
-            var endTime = Time.time + delay;
-            while (Time.time < endTime)
+            return objects.Dequeue();
+        }
+
+        private void AddObjects(int count)
+        {
+            for (int i = 0; i < count; i++)
             {
-                await Task.Yield();
+                var newObject = Instantiate(prefab);
+
+                newObject.SetActive(false);
+                objects.Enqueue(newObject);
+                newObject.GetComponent<IGameObjectPooled>().Pool = this;
+
+                newObject.transform.parent = poolContainer;
             }
         }
+
+        /// <summary>
+        /// Returns a GameObject to the pool to be recycled
+        /// </summary>
+        /// <param name="objectToReturn">An instance of the pooled gameObject implementing IGameObjectPooled</param>
+        /// <param name="delay">An optional delay of n milli seconds in which all all renders are disabled for any jobs to be handled asynchrounsly </param>
+        public async void ReturnToPool(GameObject objectToReturn, float delay = 0)
+        {
+            if (objectToReturn == null) return;
+
+            if (delay > 0)
+            {
+                //Disable Visuals
+                var rends = objectToReturn.GetComponents<Renderer>().ToList();
+                rends.ForEach(r => r.enabled = false);
+
+                //Induce some delay
+                var endTime = Time.time + delay;
+                while (Time.time < endTime)
+                {
+                    await Task.Yield();
+                }
+            }
             objectToReturn.SetActive(false);
             objects.Enqueue(objectToReturn);
+        }
     }
-}
 
-public interface IGameObjectPooled
-{
-    GameObjectPool Pool { get; set; }
+    /// <summary>
+    /// Provides access to the Pool
+    /// </summary>
+    public interface IGameObjectPooled
+    {
+        /// <summary>
+        /// This is your reference to the pool which you will use to return gameObjects no longer needed
+        /// </summary>
+        GameObjectPool Pool { get; set; }
+    }
 }

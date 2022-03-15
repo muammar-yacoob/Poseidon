@@ -1,4 +1,5 @@
 using UnityEngine;
+using PanettoneGames;
 
 public class Tank : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class Tank : MonoBehaviour
     private float fireTimer = 1f;
     private float timer;
 
-    private void Awake() => projectilePool.PreWarm();
     void Update()
     {
         //shooting

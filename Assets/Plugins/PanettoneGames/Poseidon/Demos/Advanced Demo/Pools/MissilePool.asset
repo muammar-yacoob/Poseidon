@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MissilePool
   m_EditorClassIdentifier: 
   prefab: {fileID: 2041545065353223742, guid: 46b6652b0a19d46499c165e3b9ed20dd, type: 3}
-  prewarmCount: 10
+  prewarmCount: 1

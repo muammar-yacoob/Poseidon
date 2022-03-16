@@ -11,27 +11,23 @@ public class WeaponLauncher : MonoBehaviour
     [SerializeField] Transform[] firePoints;
     [SerializeField] InputActionAsset playerControls;
 
-
-    [SerializeField] [Tooltip("Action Name from your Actions Asset")] string actionName;
+    [SerializeField] private InputActionReference fireButton;
     [SerializeField] bool hideOnLaunch;
 
     public static event Action<Transform[]> OnFire = delegate { };
     private float fireTimer;
-    private InputAction fireKey;
     bool isHeldDown;
 
     private void OnEnable()
     {
-        fireKey = playerControls.FindAction(actionName);
-        fireKey.Enable();
-        //fireKey.performed += Fire; //Single Shot
-        fireKey.started += (ctx) => isHeldDown = true;
-        fireKey.canceled += (ctx) => isHeldDown = false;
+        fireButton.action.Enable();
+        fireButton.action.started += (ctx) => isHeldDown = true;
+        fireButton.action.canceled += (ctx) => isHeldDown = false;
 
         ProjectilePool.Prewarm();
     }
 
-    private void OnDisable() => fireKey.Disable();
+    private void OnDisable() => fireButton.action.Disable();
 
     void Update()
     {

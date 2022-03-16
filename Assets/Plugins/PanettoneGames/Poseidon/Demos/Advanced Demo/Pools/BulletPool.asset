@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BulletPool
   m_EditorClassIdentifier: 
   prefab: {fileID: 8920420353749631833, guid: 05a606149ca340c4c98bb4760e2d7021, type: 3}
-  prewarmCount: 20
+  prewarmCount: 15

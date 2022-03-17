@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.panettonegames.com.panettonegames.posidon": {
+    "com.panettonegames.posidon": {
       "version": "file:Poseidon",
       "depth": 0,
       "source": "embedded",

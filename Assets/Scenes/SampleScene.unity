@@ -188,9 +188,9 @@ MonoBehaviour:
   fireDelay: 0.2
   pool: {fileID: 11400000, guid: 62613a83d0f97c840a16f3f804ddcb24, type: 2}
   firePoints:
-  - {fileID: 1072996718}
+  - {fileID: 1494181151}
   sFX: {fileID: 0}
-  fireButton: {fileID: 2080284443}
+  fireButton: {fileID: 1013858840}
 --- !u!65 &587995210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -265,6 +265,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1072996718}
+  - {fileID: 1494181151}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,9 +304,9 @@ MonoBehaviour:
   fireDelay: 0.2
   pool: {fileID: 11400000, guid: 62613a83d0f97c840a16f3f804ddcb24, type: 2}
   firePoints:
-  - {fileID: 1946188065}
+  - {fileID: 1080318643}
   sFX: {fileID: 0}
-  fireButton: {fileID: 2080284443}
+  fireButton: {fileID: 1013858840}
 --- !u!65 &597510653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -380,6 +381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1946188065}
+  - {fileID: 1080318643}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -589,6 +591,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013858840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: PoolPlayer/Fire
+  m_EditorClassIdentifier: 
+  m_Asset: {fileID: -944628639613478452, guid: 17f4fb76923205a418d5aa678a874d6c, type: 3}
+  m_ActionId: 1307f4b7-c6a8-4d43-b9fd-d8b9e5e437ae
 --- !u!1 &1072996717
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +635,36 @@ Transform:
   m_Father: {fileID: 587995213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1080318642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080318643}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1080318643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080318642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 597510656}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085952836
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +677,6 @@ GameObject:
   - component: {fileID: 1085952840}
   - component: {fileID: 1085952839}
   - component: {fileID: 1085952838}
-  - component: {fileID: 1085952837}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: Untagged
@@ -639,23 +684,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1085952837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085952836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7788428c82200e419f6cab0a53e158d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireDelay: 0.2
-  pool: {fileID: 11400000, guid: fbc35f5e107eb9c46bdb62bd91e6f5c8, type: 2}
-  firePoints:
-  - {fileID: 246434261}
-  sFX: {fileID: 0}
 --- !u!65 &1085952838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -733,6 +761,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1494181150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494181151}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494181151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494181150}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 587995213}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1525971410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525971411}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1525971411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525971410}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 1542632042}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542632037
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,9 +856,9 @@ MonoBehaviour:
   fireDelay: 0.2
   pool: {fileID: 11400000, guid: 62613a83d0f97c840a16f3f804ddcb24, type: 2}
   firePoints:
-  - {fileID: 1761574769}
+  - {fileID: 1525971411}
   sFX: {fileID: 0}
-  fireButton: {fileID: 2080284443}
+  fireButton: {fileID: 1013858840}
 --- !u!65 &1542632039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -845,6 +933,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1761574769}
+  - {fileID: 1525971411}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -908,20 +997,6 @@ Transform:
   m_Father: {fileID: 597510656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080284443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: PoolPlayer/Fire
-  m_EditorClassIdentifier: 
-  m_Asset: {fileID: -944628639613478452, guid: 17f4fb76923205a418d5aa678a874d6c, type: 3}
-  m_ActionId: 1307f4b7-c6a8-4d43-b9fd-d8b9e5e437ae
 --- !u!1 &2111456891
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +1009,6 @@ GameObject:
   - component: {fileID: 2111456895}
   - component: {fileID: 2111456894}
   - component: {fileID: 2111456893}
-  - component: {fileID: 2111456892}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -942,23 +1016,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2111456892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111456891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7788428c82200e419f6cab0a53e158d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireDelay: 0.2
-  pool: {fileID: 11400000, guid: fbc35f5e107eb9c46bdb62bd91e6f5c8, type: 2}
-  firePoints:
-  - {fileID: 600332285}
-  sFX: {fileID: 0}
 --- !u!65 &2111456893
 BoxCollider:
   m_ObjectHideFlags: 0

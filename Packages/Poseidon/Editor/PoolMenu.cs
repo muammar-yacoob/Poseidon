@@ -8,10 +8,10 @@ namespace PanettoneGames.Poseidon.Menu
     public class PoolMenu : ScriptableObject
     {
         private static string myPubID = "46749";
-
-        private const string PlayerPoolAssetPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/PlayerPool.asset";
-        private const string EnemyAIPoolAssetPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/EnemyAIPool.asset";
-        private const string InputActionAssetPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/PoolGameControls.inputactions";
+        private const string resourcesPath = @"Packages/com.panettonegames.com.panettonegames.posidon/Package Resources/Assets/Resources/";
+        private const string playerPoolAssetPath = resourcesPath + "PlayerPool.asset";
+        private const string enemyAIPoolAssetPath = resourcesPath + "EnemyAIPool.asset";
+        private const string inputActionAssetPath = resourcesPath + "PoolGameControls.inputactions";
 
         [MenuItem("Tools/Poseidon/Standard Player Setup", false, 11)]
         public static void PlayerPoolSetup()
@@ -21,12 +21,12 @@ namespace PanettoneGames.Poseidon.Menu
             if (HasBehaviour(activeObject)) return;
             Selection.activeGameObject.AddComponent<PlayerShooting>();
             var comp = activeObject.GetComponent<PlayerShooting>();
-            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(PlayerPoolAssetPath, typeof(GameObjectPool));
+            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(playerPoolAssetPath, typeof(GameObjectPool));
             comp.SetPool(_pool);
             comp.SetFirePoint();
 
             //Assigning Fire Button
-            InputActionAsset _inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionAssetPath);
+            InputActionAsset _inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(inputActionAssetPath);
             var _inputAction = _inputAsset.FindAction("Fire");
             var _inputActionReference = InputActionReference.Create(_inputAction);
             comp.SetFireButton(_inputActionReference);
@@ -41,7 +41,7 @@ namespace PanettoneGames.Poseidon.Menu
             if (HasBehaviour(activeObject)) return;
             activeObject.AddComponent<EnemyAIShooting>();
             var comp = Selection.activeGameObject.GetComponent<EnemyAIShooting>();
-            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(EnemyAIPoolAssetPath, typeof(GameObjectPool));
+            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(enemyAIPoolAssetPath, typeof(GameObjectPool));
             comp.SetPool(_pool);
             comp.SetFirePoint();
         }

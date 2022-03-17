@@ -25,6 +25,7 @@ namespace PanettoneGames.Poseidon.Menu
             comp.SetPool(_pool);
             comp.SetFirePoint();
 
+            //Assigning Fire Button
             InputActionAsset _inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputActionAssetPath);
             var _inputAction = _inputAsset.FindAction("Fire");
             var _inputActionReference = InputActionReference.Create(_inputAction);
@@ -34,16 +35,15 @@ namespace PanettoneGames.Poseidon.Menu
         static bool Validate_PlayerPoolSetup() => Selection.activeGameObject != null;
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", false, 11)]
-        public static bool EnemyAIPoolSetup()
+        public static void EnemyAIPoolSetup()
         {
             var activeObject = Selection.activeGameObject;
-            if (HasBehaviour(activeObject)) return true;
+            if (HasBehaviour(activeObject)) return;
             activeObject.AddComponent<EnemyAIShooting>();
             var comp = Selection.activeGameObject.GetComponent<EnemyAIShooting>();
             GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(EnemyAIPoolAssetPath, typeof(GameObjectPool));
             comp.SetPool(_pool);
-
-            return !Application.isPlaying;
+            comp.SetFirePoint();
         }
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 11)]

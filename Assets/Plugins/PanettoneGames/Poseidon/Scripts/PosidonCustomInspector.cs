@@ -9,15 +9,18 @@ namespace PanettoneGames.Poseidon.Menu
     {
         private bool showInfo;
         private GUISkin skin;
-
+        private PooledShootingBehaviour pooledBehaviour;
         private static string myPubID = "46749";
         private GameObject activeObject;
         private string headerText;
+
+        
 
         void OnEnable()
         {
             showInfo = true;
             skin = Resources.Load<GUISkin>("guiStyles/Default");
+            pooledBehaviour = target as PooledShootingBehaviour;
         }
 
         /// <summary>
@@ -26,12 +29,9 @@ namespace PanettoneGames.Poseidon.Menu
         public override void OnInspectorGUI()
         {
             activeObject = Selection.activeGameObject;
-            headerText = activeObject == null ? string.Empty : activeObject.name;
             GUILayout.Label($"Posidon 1.3.0", skin.GetStyle("PanHeaderDefault"));
-            if (!string.IsNullOrEmpty(headerText))
-            {
-                GUILayout.Label($"Inspecting {activeObject.name}");
-            }
+            //headerText = activeObject == null ? string.Empty : activeObject.name;
+            //if (!string.IsNullOrEmpty(headerText)) GUILayout.Label($"Inspecting {activeObject.name}");
 
             base.DrawDefaultInspector();
             DrawGUI();
@@ -40,31 +40,17 @@ namespace PanettoneGames.Poseidon.Menu
         private void DrawGUI()
         {
             EditorGUILayout.Space(20);
-            //showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, "Poseidon", skin.GetStyle("PanHeaderDefault"));
-            showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, "Settings");
-            if (showInfo)
+            if (EditorApplication.isPlaying && pooledBehaviour is PlayerShooting)
             {
-                EditorGUILayout.Space(5);
-                //GUILayout.Label($"Colliders");
-
-                if (activeObject != null)
-                {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.Label($"{activeObject.name} Verts: {5}");
-                    GUILayout.EndHorizontal();
-                    EditorGUILayout.Space(5);
-                }
-                if (!EditorApplication.isPlaying)
-                {
-                    if (GUILayout.Button($"Fire"))
-                    {
-
-                    }
-                }
+                if (GUILayout.Button("Test Fire")) pooledBehaviour.TestFire();
             }
-            EditorGUILayout.EndFoldoutHeaderGroup();
 
-            GUILayout.Space(15);
+            //showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, "Settings");
+            //if (showInfo)
+            //{
+            //  if (activeObject != null) GUILayout.Label($"{activeObject.name} Ver: {Application.version}");
+            //}
+            //EditorGUILayout.EndFoldoutHeaderGroup();
 
             if (GUILayout.Button("More cool tools...", skin.GetStyle("PanStoreLink")))
             {

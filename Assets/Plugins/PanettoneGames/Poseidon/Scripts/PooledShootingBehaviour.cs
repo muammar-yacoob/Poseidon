@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 namespace PanettoneGames.Poseidon.Utilities
 {
     public abstract class PooledShootingBehaviour : MonoBehaviour
     {
-        [SerializeField] [Tooltip("Delay between shots in seconds")] protected float fireDelay = 02f;
+        [SerializeField] [Tooltip("Delay between shots in seconds")] protected float fireDelay = 0.2f;
         [SerializeField] [Tooltip("The pool asset from which projectiles will fire")] private GameObjectPool pool;
         [SerializeField] [Tooltip("Delay between shots in seconds")] protected List<Transform> firePoints = new List<Transform>();
         [SerializeField] [Tooltip("Optional sound effect on shooting")] protected AudioClip sFX;
@@ -28,6 +30,7 @@ namespace PanettoneGames.Poseidon.Utilities
             firePoints[0].position += Vector3.forward;
         }
 
+        protected void FireButton(InputAction.CallbackContext ctx) => Fire();
         protected void Fire()
         {
             if (firePoints.Count < 1)
@@ -43,5 +46,7 @@ namespace PanettoneGames.Poseidon.Utilities
             }
             OnFire?.Invoke(sFX);
         }
+
+        internal void TestFire() => Fire();
     }
 }

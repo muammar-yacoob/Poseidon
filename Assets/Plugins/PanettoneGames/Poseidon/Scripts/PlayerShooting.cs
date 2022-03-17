@@ -6,20 +6,25 @@ namespace PanettoneGames.Poseidon.Utilities
     {
         [Tooltip("Reference to the Fire Input Action")]
         [SerializeField] private InputActionReference fireButton;
+        private bool isHeldDown;
 
         private void OnEnable()
         {
             if (fireButton == null)
             {
-                Debug.LogError($"No fire points assigned to {name}");
+                Debug.LogError($"No Fire action was assigned to {name}");
                 return;
             }
-            fireButton.action.performed += ctx => Fire();
+            fireButton.action.Enable();
+            //fireButton.action.performed += ctx => base.Fire();
+
+            fireButton.action.started += (ctx) => isHeldDown = true;
+            fireButton.action.canceled += (ctx) => isHeldDown = false;
         }
 
-        private void OnDisable() => fireButton.action.performed -= ctx => Fire();
+        private void OnDisable() => fireButton.action.Disable();
 
-        public void SetFireButton(InputActionReference fireButton) => this.fireButton =  fireButton;
+        public void SetFireButton(InputActionReference fireButton) => this.fireButton = fireButton;
         private void Update()
         {
             if (fireButton == null) return;
@@ -32,6 +37,7 @@ namespace PanettoneGames.Poseidon.Utilities
             timer += Time.deltaTime;
         }
         private bool CanFire =>
-                fireButton.action.IsPressed() && timer >= fireDelay;
+            isHeldDown &&
+            timer >= fireDelay;
     }
 }

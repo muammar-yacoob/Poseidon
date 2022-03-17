@@ -9,7 +9,6 @@ public class WeaponLauncher : MonoBehaviour
 
     [SerializeField] [Range(0.05f, 2f)] private float fireRate = 0.25f;
     [SerializeField] Transform[] firePoints;
-    [SerializeField] InputActionAsset playerControls;
 
     [SerializeField] private InputActionReference fireButton;
     [SerializeField] bool hideOnLaunch;

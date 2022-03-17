@@ -19,6 +19,7 @@ namespace PanettoneGames.Poseidon.Utilities
 
         private void OnDisable() => fireButton.action.performed -= ctx => Fire();
 
+        public void SetFireButton(InputActionReference fireButton) => this.fireButton =  fireButton;
         private void Update()
         {
             if (fireButton == null) return;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2070592955917721989}
   - component: {fileID: 410687186873454085}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0bdcd188fd520f4bb07380b6ca61468, type: 2}
+  - {fileID: 2100000, guid: 9b6ddb8a2652c47458d14a55de87cd47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

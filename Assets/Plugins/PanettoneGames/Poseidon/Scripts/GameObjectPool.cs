@@ -32,7 +32,9 @@ namespace PanettoneGames
             if (objects.Count == 0)
                 AddObjects(1);
 
-            return objects.Dequeue();
+            var obj = objects.Dequeue();
+            obj.SetActive(true);
+            return obj;
         }
 
         private void AddObjects(int count)

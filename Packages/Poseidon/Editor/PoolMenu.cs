@@ -3,51 +3,71 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 namespace PanettoneGames.Poseidon.Menu
 {
     public class PoolMenu : ScriptableObject
     {
         private static string myPubID = "46749";
-        private const string resourcesPath = @"Packages/com.panettonegames.com.panettonegames.posidon/Package Resources/Assets/Resources/";
+        private static GameObjectPool _playerPool;
+        private static GameObjectPool _enemyPool;
+        private static InputActionReference _inputActionReference;
+        private const string resourcesPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/";
         private const string playerPoolAssetPath = resourcesPath + "PlayerPool.asset";
         private const string enemyAIPoolAssetPath = resourcesPath + "EnemyAIPool.asset";
         private const string inputActionAssetPath = resourcesPath + "PoolGameControls.inputactions";
 
+        private static void InitializeResources()
+        {
+            _playerPool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(playerPoolAssetPath, typeof(GameObjectPool));
+            _enemyPool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(enemyAIPoolAssetPath, typeof(GameObjectPool));
+
+            InputActionAsset _inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(inputActionAssetPath);
+            var _inputAction = _inputAsset.FindAction("Fire");
+            _inputActionReference = InputActionReference.Create(_inputAction);
+        }
+
         [MenuItem("Tools/Poseidon/Standard Player Setup", false, 11)]
         public static void PlayerPoolSetup()
         {
-            //////////////disable if no object is selected
-            var activeObject = Selection.activeGameObject;
-            if (HasBehaviour(activeObject)) return;
-            Selection.activeGameObject.AddComponent<PlayerShooting>();
-            var comp = activeObject.GetComponent<PlayerShooting>();
-            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(playerPoolAssetPath, typeof(GameObjectPool));
-            comp.SetPool(_pool);
-            comp.SetFirePoint();
+            var selectedObjects = Selection.gameObjects;
+            if (selectedObjects.Length < 1) return;
+            InitializeResources();
 
-            //Assigning Fire Button
-            InputActionAsset _inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(inputActionAssetPath);
-            var _inputAction = _inputAsset.FindAction("Fire");
-            var _inputActionReference = InputActionReference.Create(_inputAction);
-            comp.SetFireButton(_inputActionReference);
+            foreach (var obj in selectedObjects)
+            {
+                if (HasBehaviour(obj)) continue;
+                obj.AddComponent<PlayerShooting>();
+                var comp = obj.GetComponent<PlayerShooting>();
+                comp.SetPool(_playerPool);
+                comp.SetFirePoint();
+
+                //Assigning Fire Button
+                comp.SetFireButton(_inputActionReference);
+            }
         }
         [MenuItem("Tools/Poseidon/Standard Player Setup", true, 11)]
-        static bool Validate_PlayerPoolSetup() => Selection.activeGameObject != null;
+        static bool Validate_PlayerPoolSetup() => Selection.gameObjects.Length > 0;
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", false, 11)]
         public static void EnemyAIPoolSetup()
         {
-            var activeObject = Selection.activeGameObject;
-            if (HasBehaviour(activeObject)) return;
-            activeObject.AddComponent<EnemyAIShooting>();
-            var comp = Selection.activeGameObject.GetComponent<EnemyAIShooting>();
-            GameObjectPool _pool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(enemyAIPoolAssetPath, typeof(GameObjectPool));
-            comp.SetPool(_pool);
-            comp.SetFirePoint();
+            var selectedObjects = Selection.gameObjects;
+            if (selectedObjects.Length < 1) return;
+            InitializeResources();
+
+            foreach (var obj in selectedObjects)
+            {
+                if (HasBehaviour(obj)) continue;
+                obj.AddComponent<EnemyAIShooting>();
+                var comp = obj.GetComponent<EnemyAIShooting>();
+                comp.SetPool(_enemyPool);
+                comp.SetFirePoint();
+            }
         }
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 11)]
-        static bool Validate_EnemyAIPoolSetup() => Selection.activeGameObject != null;
+        static bool Validate_EnemyAIPoolSetup() => Selection.gameObjects.Length > 0;
         private static bool HasBehaviour(GameObject activeObject)
         {
             var found = activeObject.GetComponent<PooledShootingBehaviour>() != null;

@@ -47,6 +47,6 @@ namespace PanettoneGames.Poseidon.Utilities
             OnFire?.Invoke(sFX);
         }
 
-        internal void TestFire() => Fire();
+        public void TestFire() => Fire();
     }
 }

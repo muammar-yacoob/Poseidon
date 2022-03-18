@@ -39,11 +39,25 @@ namespace PanettoneGames.Poseidon.Menu
                 if (HasBehaviour(obj)) continue;
                 obj.AddComponent<PlayerShooting>();
                 var comp = obj.GetComponent<PlayerShooting>();
-                comp.SetPool(_playerPool);
                 comp.SetFirePoint();
 
-                //Assigning Fire Button
-                comp.SetFireButton(_inputActionReference);
+                if(_playerPool == null)
+                {
+                    Debug.LogError("pool asset is missing");
+                }
+                else
+                {
+                    comp.SetPool(_playerPool);
+                }
+
+                if (_inputActionReference == null)
+                {
+                    Debug.LogError("Fire action is missing");
+                }
+                else
+                {
+                    comp.SetFireButton(_inputActionReference);
+                }
             }
         }
         [MenuItem("Tools/Poseidon/Standard Player Setup", true, 11)]
@@ -61,8 +75,16 @@ namespace PanettoneGames.Poseidon.Menu
                 if (HasBehaviour(obj)) continue;
                 obj.AddComponent<EnemyAIShooting>();
                 var comp = obj.GetComponent<EnemyAIShooting>();
-                comp.SetPool(_enemyPool);
                 comp.SetFirePoint();
+
+                if (_enemyPool == null)
+                {
+                    Debug.LogError("pool asset is missing");
+                }
+                else
+                {
+                    comp.SetPool(_enemyPool);
+                }
             }
         }
 

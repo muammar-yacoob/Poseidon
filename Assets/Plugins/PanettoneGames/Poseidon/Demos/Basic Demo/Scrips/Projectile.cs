@@ -1,25 +1,29 @@
 using UnityEngine;
 using PanettoneGames;
-public class Projectile : MonoBehaviour, IGameObjectPooled //implement interface
+
+namespace PanettoneGames
 {
-    private float LaunchSpeed = 20;
-    private float maxLifeTime = 2f;
-    private float lifeTime;
-
-    public GameObjectPool Pool { get; set; } //implement interface
-    private void OnEnable() => lifeTime = 0;
-
-    void Update()
+    public class Projectile : MonoBehaviour, IGameObjectPooled //implement interface
     {
-        transform.Translate(Vector3.forward * LaunchSpeed * Time.deltaTime);
-        lifeTime += Time.deltaTime;
+        private float LaunchSpeed = 20;
+        private float maxLifeTime = 2f;
+        private float lifeTime;
 
-        if (lifeTime > maxLifeTime)
-            Pool.ReturnToPool(this.gameObject); //return to pool instead of destroy
-    }
+        public GameObjectPool Pool { get; set; } //implement interface
+        private void OnEnable() => lifeTime = 0;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Pool?.ReturnToPool(this.gameObject);//return to pool instead of destroy
+        void Update()
+        {
+            transform.Translate(Vector3.forward * LaunchSpeed * Time.deltaTime);
+            lifeTime += Time.deltaTime;
+
+            if (lifeTime > maxLifeTime)
+                Pool.ReturnToPool(this.gameObject); //return to pool instead of destroy
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Pool?.ReturnToPool(this.gameObject);//return to pool instead of destroy
+        }
     }
 }

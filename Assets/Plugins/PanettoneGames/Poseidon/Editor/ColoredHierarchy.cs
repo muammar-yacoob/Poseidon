@@ -43,6 +43,8 @@ public class ColoredHierarchy : MonoBehaviour
         var obj = EditorUtility.InstanceIDToObject(instanceID);
         if (obj != null)
         {
+            //var go = obj as GameObject;
+            //if (go.TryGetComponent(out BoxCollider box))
             if (obj.name.Contains("- Pool"))
             {
                 var status = EditorPrefs.GetBool(DEBUG_COLORS, true);

@@ -116,6 +116,23 @@ namespace PanettoneGames.Poseidon.Menu
             Application.OpenURL($"https://assetstore.unity.com/publishers/" + myPubID + "?aid=1011lds77");
         }
 
+        #region DebugColors
+        //private const string MenuName = "Debug Colors";
+        //public static bool isEnabled;
 
+        //[MenuItem(MenuName)]
+        //private static void ToggleAction()
+        //{
+        //    isEnabled = !isEnabled;
+        //    EditorPrefs.SetBool(MenuName, isEnabled);
+        //}
+
+        //[MenuItem(MenuName, true)]
+        //private static bool ToggleActionValidate()
+        //{
+        //    ColoredHierarchy.SetDebug();
+        //    return true;
+        //}
+        #endregion
     }
 }

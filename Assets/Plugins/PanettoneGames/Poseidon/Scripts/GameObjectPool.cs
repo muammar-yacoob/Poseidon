@@ -16,10 +16,23 @@ namespace PanettoneGames
         /// <summary>
         /// Prewarms the pool with the specified prewarm Count on the GameObjectPool Scriptable Object
         /// </summary>
-        /// <param name="parentTransform">[Optional] The name of parent transform of the pooled objects</param>
-        public void Prewarm(string parentTransform = null)
+        /// <param name="prentTransformName">[Optional] If ignored, all pool objects will be grouped into one parent transform</param>
+        public void Prewarm(string prentTransformName = null)
         {
-            poolContainer = parentTransform == null ? new GameObject(name).transform: new GameObject(parentTransform).transform;
+            if (prentTransformName == null)
+            {
+                var g = GameObject.Find(name);
+                if (g == null)
+                {
+                    g = new GameObject(name);
+                }
+                this.poolContainer = g.transform;
+            }
+            else
+            {
+                this.poolContainer = new GameObject($"{prentTransformName} - Pool").transform;
+            }
+
             AddObjects(prewarmCount);
         }
 

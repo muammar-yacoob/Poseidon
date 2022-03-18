@@ -16,7 +16,7 @@ namespace PanettoneGames.Poseidon.Utilities
                 return;
             }
             fireButton.action.Enable();
-            //fireButton.action.performed += ctx => base.Fire();
+            //fireButton.action.performed += ctx => base.Fire(); //For firing once
 
             fireButton.action.started += (ctx) => isHeldDown = true;
             fireButton.action.canceled += (ctx) => isHeldDown = false;
@@ -24,7 +24,6 @@ namespace PanettoneGames.Poseidon.Utilities
 
         private void OnDisable() => fireButton.action.Disable();
 
-        public void SetFireButton(InputActionReference fireButton) => this.fireButton = fireButton;
         private void Update()
         {
             if (fireButton == null) return;
@@ -39,5 +38,9 @@ namespace PanettoneGames.Poseidon.Utilities
         private bool CanFire =>
             isHeldDown &&
             timer >= fireDelay;
+
+        #region Menu Setup
+        public void SetFireButton(InputActionReference fireButton) => this.fireButton = fireButton;
+        #endregion
     }
 }

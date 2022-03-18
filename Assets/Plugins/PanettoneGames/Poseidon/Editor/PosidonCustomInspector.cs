@@ -52,12 +52,12 @@ namespace PanettoneGames.Poseidon.Menu
             //}
             //EditorGUILayout.EndFoldoutHeaderGroup();
 
-            if (GUILayout.Button("More cool tools...", skin.GetStyle("PanStoreLink")))
-            {
-                Application.OpenURL($"https://assetstore.unity.com/publishers/" + myPubID);
-                Application.OpenURL($"https://panettonegames.com/");
-            }
-            GUILayout.Space(5);
+            //if (GUILayout.Button("More cool tools...", skin.GetStyle("PanStoreLink")))
+            //{
+            //    Application.OpenURL($"https://assetstore.unity.com/publishers/" + myPubID);
+            //    Application.OpenURL($"https://panettonegames.com/");
+            //}
+            //GUILayout.Space(5);
         }
     }
 }

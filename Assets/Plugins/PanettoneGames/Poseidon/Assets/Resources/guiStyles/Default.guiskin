@@ -1408,7 +1408,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: 014ff1f7803362c4fb3ccdbe94fd5c9a, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_Alignment: 3
     m_WordWrap: 0

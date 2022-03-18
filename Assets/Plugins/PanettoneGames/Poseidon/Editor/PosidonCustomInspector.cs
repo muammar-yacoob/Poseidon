@@ -29,7 +29,7 @@ namespace PanettoneGames.Poseidon.Menu
         public override void OnInspectorGUI()
         {
             activeObject = Selection.activeGameObject;
-            GUILayout.Label($"Posidon 1.3.0", skin.GetStyle("PanHeaderDefault"));
+            GUILayout.Label($"Poseidon", skin.GetStyle("PanHeaderDefault"));
             //headerText = activeObject == null ? string.Empty : activeObject.name;
             //if (!string.IsNullOrEmpty(headerText)) GUILayout.Label($"Inspecting {activeObject.name}");
 

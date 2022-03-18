@@ -9,17 +9,21 @@ namespace PanettoneGames.Poseidon.Menu
     {
         private bool showInfo;
         private GUISkin skin;
+        private Texture2D iconHeader;
         private PooledShootingBehaviour pooledBehaviour;
         private static string myPubID = "46749";
         private GameObject activeObject;
         private string headerText;
-
-        
+        private Rect headerRect;
+        private Texture2D headerTexture;
+        private float headerTexScale = 0.20f;
 
         void OnEnable()
         {
             showInfo = true;
             skin = Resources.Load<GUISkin>("guiStyles/Default");
+            headerTexture = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_header.png", typeof(Texture2D)) as Texture2D;
+
             pooledBehaviour = target as PooledShootingBehaviour;
         }
 
@@ -29,7 +33,12 @@ namespace PanettoneGames.Poseidon.Menu
         public override void OnInspectorGUI()
         {
             activeObject = Selection.activeGameObject;
+
+            //Header
             GUILayout.Label($"Poseidon", skin.GetStyle("PanHeaderDefault"));
+            headerRect = new Rect(Screen.width - headerTexture.width * headerTexScale, 0, headerTexture.width * headerTexScale, headerTexture.height * headerTexScale);
+            GUI.DrawTexture(headerRect, headerTexture);
+
             //headerText = activeObject == null ? string.Empty : activeObject.name;
             //if (!string.IsNullOrEmpty(headerText)) GUILayout.Label($"Inspecting {activeObject.name}");
 

@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 namespace PanettoneGames.Poseidon.Menu
 {
     public class PoolMenu : ScriptableObject
@@ -17,6 +16,13 @@ namespace PanettoneGames.Poseidon.Menu
         private const string enemyAIPoolAssetPath = resourcesPath + "EnemyAIPool.asset";
         private const string inputActionAssetPath = resourcesPath + "PoolGameControls.inputactions";
 
+        private const string DEBUG_MENU_NAME = "Tools/Poseidon/Debug Colors";
+        private const string DEBUG_COLORS = "DebugColors";
+        private static bool isDebugColors
+        {
+            get { return EditorPrefs.GetBool(DEBUG_COLORS, true); }
+            set { EditorPrefs.SetBool(DEBUG_COLORS, value); }
+        }
         private static void InitializeResources()
         {
             _playerPool = (GameObjectPool)AssetDatabase.LoadAssetAtPath(playerPoolAssetPath, typeof(GameObjectPool));
@@ -117,22 +123,20 @@ namespace PanettoneGames.Poseidon.Menu
         }
 
         #region DebugColors
-        //private const string MenuName = "Debug Colors";
-        //public static bool isEnabled;
+        [MenuItem(DEBUG_MENU_NAME)]
+        private static void PerformAction()
+        {
+            isDebugColors = !isDebugColors;
+            var onOff = isDebugColors ? "On" : "Off";
+            UnityEngine.Debug.Log($"Debug Colors is turned {onOff}");
+        }
 
-        //[MenuItem(MenuName)]
-        //private static void ToggleAction()
-        //{
-        //    isEnabled = !isEnabled;
-        //    EditorPrefs.SetBool(MenuName, isEnabled);
-        //}
-
-        //[MenuItem(MenuName, true)]
-        //private static bool ToggleActionValidate()
-        //{
-        //    ColoredHierarchy.SetDebug();
-        //    return true;
-        //}
+        [MenuItem(DEBUG_MENU_NAME, true)]
+        private static bool PerformActionValidation()
+        {
+            UnityEditor.Menu.SetChecked(DEBUG_MENU_NAME, isDebugColors);
+            return true;
+        }
         #endregion
     }
 }

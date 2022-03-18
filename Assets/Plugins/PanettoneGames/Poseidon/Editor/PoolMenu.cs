@@ -41,7 +41,8 @@ namespace PanettoneGames.Poseidon.Menu
                 var comp = obj.GetComponent<PlayerShooting>();
                 comp.SetFirePoint();
 
-                if(_playerPool == null)
+                //Assigning Pool
+                if (_playerPool == null)
                 {
                     Debug.LogError("pool asset is missing");
                 }
@@ -50,6 +51,7 @@ namespace PanettoneGames.Poseidon.Menu
                     comp.SetPool(_playerPool);
                 }
 
+                //Assigning Fire button
                 if (_inputActionReference == null)
                 {
                     Debug.LogError("Fire action is missing");
@@ -61,7 +63,7 @@ namespace PanettoneGames.Poseidon.Menu
             }
         }
         [MenuItem("Tools/Poseidon/Standard Player Setup", true, 11)]
-        static bool Validate_PlayerPoolSetup() => Selection.gameObjects.Length > 0;
+        static bool Validate_PlayerPoolSetup() => Selection.gameObjects.Length > 0 && !EditorApplication.isPlaying;
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", false, 11)]
         public static void EnemyAIPoolSetup()
@@ -89,7 +91,7 @@ namespace PanettoneGames.Poseidon.Menu
         }
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 11)]
-        static bool Validate_EnemyAIPoolSetup() => Selection.gameObjects.Length > 0;
+        static bool Validate_EnemyAIPoolSetup() => Selection.gameObjects.Length > 0 && !EditorApplication.isPlaying;
         private static bool HasBehaviour(GameObject activeObject)
         {
             var found = activeObject.GetComponent<PooledShootingBehaviour>() != null;

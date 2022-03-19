@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace PanettoneGames.Poseidon.Menu
 {
-    [CustomEditor(typeof(PooledShootingBehaviour), true)]
+    [CustomEditor(typeof(PooledShootingBehaviour)), CanEditMultipleObjects]
     public class PosidonCustomInspector : Editor
     {
-        private bool showInfo;
         private GUISkin skin;
         private Texture2D iconHeader;
         private PooledShootingBehaviour pooledBehaviour;
-        private static string myPubID = "46749";
+        //private static string myPubID = "46749";
         private GameObject activeObject;
         private string headerText;
         private Rect headerRect;
@@ -20,7 +19,6 @@ namespace PanettoneGames.Poseidon.Menu
 
         void OnEnable()
         {
-            showInfo = true;
             skin = Resources.Load<GUISkin>("guiStyles/Default");
             headerTexture = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_header.png", typeof(Texture2D)) as Texture2D;
 

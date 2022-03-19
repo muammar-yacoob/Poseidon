@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PanettoneGames.Poseidon.Menu
 {
-    [CustomEditor(typeof(PooledShootingBehaviour)), CanEditMultipleObjects]
+    [CustomEditor(typeof(PooledShootingBehaviour),true), CanEditMultipleObjects]
     public class PosidonCustomInspector : Editor
     {
         private GUISkin skin;

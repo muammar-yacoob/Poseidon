@@ -71,7 +71,7 @@ namespace PanettoneGames.Poseidon.Menu
         [MenuItem("Tools/Poseidon/Standard Player Setup", true, 11)]
         static bool Validate_PlayerPoolSetup() => Selection.gameObjects.Length > 0 && !EditorApplication.isPlaying;
 
-        [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", false, 11)]
+        [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", false, 12)]
         public static void EnemyAIPoolSetup()
         {
             var selectedObjects = Selection.gameObjects;
@@ -96,7 +96,7 @@ namespace PanettoneGames.Poseidon.Menu
             }
         }
 
-        [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 11)]
+        [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 12)]
         static bool Validate_EnemyAIPoolSetup() => Selection.gameObjects.Length > 0 && !EditorApplication.isPlaying;
         private static bool HasBehaviour(GameObject activeObject)
         {
@@ -129,6 +129,7 @@ namespace PanettoneGames.Poseidon.Menu
             isDebugColors = !isDebugColors;
             var onOff = isDebugColors ? "On" : "Off";
             UnityEngine.Debug.Log($"Debug Colors is turned {onOff}");
+            ColoredHierarchy.SetDebug(isDebugColors);
         }
 
         [MenuItem(DEBUG_MENU_NAME, true)]

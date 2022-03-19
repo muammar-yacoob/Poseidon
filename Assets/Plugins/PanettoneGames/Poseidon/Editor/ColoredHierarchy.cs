@@ -24,10 +24,17 @@ public class ColoredHierarchy : MonoBehaviour
         backgroundColor = Color.cyan;// new Color(0.5f,0.8f,0.8f);
         currentIcon = iconActive;
         
-        EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
+        //EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
     }
 
-    //public static void SetDebug() => EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
+    public static void SetDebug(bool status)
+    {
+        EditorApplication.hierarchyWindowItemOnGUI -= HandleHierarchyWindowItemOnGUI;
+        if (status)
+        {
+            EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
+        }
+    }
 
     private void OnDestroy()
     {
@@ -40,8 +47,9 @@ public class ColoredHierarchy : MonoBehaviour
     //private void OnEnable() => skin = Resources.Load<GUISkin>("guiStyles/Default");
     private static void HandleHierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
     {
+        if (!EditorApplication.isPlaying) return;
         var obj = EditorUtility.InstanceIDToObject(instanceID);
-        if (obj != null)
+        if (obj != null )
         {
             //var go = obj as GameObject;
             //if (go.TryGetComponent(out BoxCollider box))

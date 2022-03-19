@@ -23,8 +23,12 @@ public class ColoredHierarchy : MonoBehaviour
         fontColor = Color.blue;
         backgroundColor = Color.cyan;// new Color(0.5f,0.8f,0.8f);
         currentIcon = iconActive;
-        
-        //EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
+
+        var isDebugColors = EditorPrefs.GetBool(DEBUG_COLORS, true);
+        if (isDebugColors)
+        {
+            EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
+        }
     }
 
     public static void SetDebug(bool status)
@@ -48,6 +52,9 @@ public class ColoredHierarchy : MonoBehaviour
     private static void HandleHierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
     {
         if (!EditorApplication.isPlaying) return;
+        var status = EditorPrefs.GetBool(DEBUG_COLORS, true);
+        if (!status) return;
+
         var obj = EditorUtility.InstanceIDToObject(instanceID);
         if (obj != null )
         {
@@ -55,8 +62,7 @@ public class ColoredHierarchy : MonoBehaviour
             //if (go.TryGetComponent(out BoxCollider box))
             if (obj.name.Contains("- Pool"))
             {
-                var status = EditorPrefs.GetBool(DEBUG_COLORS, true);
-                if (!status) return;
+
 
                 if (Selection.instanceIDs.Contains(instanceID))
                 {

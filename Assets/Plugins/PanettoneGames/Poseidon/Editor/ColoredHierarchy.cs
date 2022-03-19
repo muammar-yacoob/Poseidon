@@ -1,3 +1,6 @@
+using PanettoneGames.Poseidon.Utilities;
+using PanettoneGames.Poseidon.Utils;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -6,29 +9,46 @@ using UnityEngine.UIElements;
 [InitializeOnLoad]
 public class ColoredHierarchy : MonoBehaviour
 {
+    
     private static Vector2 offset = new Vector2(20, 0);
+    private static GUISkin skin;
+    private static GUIStyle poolActive;
+    private static GUIStyle poolInactive;
     private static Texture2D iconActive;
     private static Texture2D iconInactive;
     private static Color fontColor;
     private static Color backgroundColor;
+    private static GUIStyle sk;
     private static Texture2D currentIcon;
+    private static DebugColors debugColors;
+    private static Color bgColor;
     private const string DEBUG_COLORS = "DebugColors";
     //private GUISkin skin;
 
+    private const string resourcesPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/";
+
     static ColoredHierarchy()
     {
-        iconActive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_black.png", typeof(Texture2D)) as Texture2D;
-        iconInactive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_white.png", typeof(Texture2D)) as Texture2D;
-
-        fontColor = Color.blue;
-        backgroundColor = Color.cyan;// new Color(0.5f,0.8f,0.8f);
-        currentIcon = iconActive;
+        InitialiseVisuals();
 
         var isDebugColors = EditorPrefs.GetBool(DEBUG_COLORS, true);
         if (isDebugColors)
         {
             EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
         }
+    }
+
+    private static void InitialiseVisuals()
+    {
+        skin = Resources.Load<GUISkin>("guiStyles/Default");
+        poolActive = skin.GetStyle("GreenText");
+        poolInactive = skin.GetStyle("RedText");
+
+        iconActive = AssetDatabase.LoadAssetAtPath(resourcesPath + "fork_black.png", typeof(Texture2D)) as Texture2D;
+        iconInactive = AssetDatabase.LoadAssetAtPath(resourcesPath + "fork_white.png", typeof(Texture2D)) as Texture2D;
+        currentIcon = iconActive;
+
+        debugColors = AssetDatabase.LoadAssetAtPath(resourcesPath + "DebugColors", typeof(DebugColors)) as DebugColors;
     }
 
     public static void SetDebug(bool status)
@@ -55,37 +75,69 @@ public class ColoredHierarchy : MonoBehaviour
         var status = EditorPrefs.GetBool(DEBUG_COLORS, true);
         if (!status) return;
 
+        Rect offsetRect = new Rect(selectionRect.position + offset, selectionRect.size);
         var obj = EditorUtility.InstanceIDToObject(instanceID);
         if (obj != null )
         {
-            //var go = obj as GameObject;
-            //if (go.TryGetComponent(out BoxCollider box))
+            var go = obj as GameObject;
+            
             if (obj.name.Contains("- Pool"))
             {
-
-
+                //Selected
                 if (Selection.instanceIDs.Contains(instanceID))
                 {
-                    fontColor = Color.white;
-                    backgroundColor = new Color(0.24f, 0.48f, 0.90f);
+                    sk = poolActive;
                     currentIcon = iconInactive;
+                    bgColor = sk.onActive.textColor;
                 }
+                //not selected
                 else
                 {
-                    fontColor = Color.blue;
-                    backgroundColor = Color.cyan;
-                    currentIcon = iconActive;
+                    sk = poolInactive;
+                    currentIcon = iconInactive;
+                    bgColor = sk.onNormal.textColor;
                 }
 
-                Rect offsetRect = new Rect(selectionRect.position + offset, selectionRect.size);
-                EditorGUI.DrawRect(selectionRect, backgroundColor);
-                EditorGUI.LabelField(offsetRect, obj.name, new GUIStyle()
-                {
-                    normal = new GUIStyleState() { textColor = fontColor },
-                    fontStyle = FontStyle.Bold
-                }
-                );
+                EditorGUI.DrawRect(selectionRect, bgColor);
+                EditorGUI.LabelField(offsetRect, obj.name, sk);
                 SetIcon(instanceID, selectionRect, currentIcon);
+            }
+            if (go.TryGetComponent(out PlayerShooting ps))
+            {
+                //Selected
+                if (Selection.instanceIDs.Contains(instanceID))
+                {
+                    sk = poolActive;
+                    bgColor = sk.active.textColor;
+                }
+                //not selected
+                else
+                {
+                    sk = poolInactive;
+                    bgColor = sk.normal.textColor;
+                }
+
+                EditorGUI.DrawRect(selectionRect, bgColor);
+                EditorGUI.LabelField(offsetRect, obj.name, sk);
+            }
+
+            if (go.TryGetComponent(out EnemyAIShooting ai))
+            {
+                //Selected
+                if (Selection.instanceIDs.Contains(instanceID))
+                {
+                    sk = poolActive;
+                    bgColor = sk.active.textColor;
+                }
+                //not selected
+                else
+                {
+                    sk = poolInactive;
+                    bgColor = sk.normal.textColor;
+                }
+
+                EditorGUI.DrawRect(selectionRect, bgColor);
+                EditorGUI.LabelField(offsetRect, obj.name, sk);
             }
         }
     }

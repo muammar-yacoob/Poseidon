@@ -1,7 +1,6 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [InitializeOnLoad]
 public class ColoredHierarchy : MonoBehaviour
@@ -17,8 +16,8 @@ public class ColoredHierarchy : MonoBehaviour
 
     static ColoredHierarchy()
     {
-        iconActive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_black.png", typeof(Texture2D)) as Texture2D;
-        iconInactive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/fork_white.png", typeof(Texture2D)) as Texture2D;
+        iconActive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Editor/Resources/fork_black.png", typeof(Texture2D)) as Texture2D;
+        iconInactive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Editor/Resources/fork_white.png", typeof(Texture2D)) as Texture2D;
 
         fontColor = Color.blue;
         backgroundColor = Color.cyan;// new Color(0.5f,0.8f,0.8f);
@@ -56,7 +55,7 @@ public class ColoredHierarchy : MonoBehaviour
         if (!status) return;
 
         var obj = EditorUtility.InstanceIDToObject(instanceID);
-        if (obj != null )
+        if (obj != null)
         {
             //var go = obj as GameObject;
             //if (go.TryGetComponent(out BoxCollider box))

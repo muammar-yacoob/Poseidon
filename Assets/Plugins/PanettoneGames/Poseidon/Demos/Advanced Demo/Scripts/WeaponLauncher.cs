@@ -38,7 +38,6 @@ public class WeaponLauncher : MonoBehaviour
             for (int i = 0; i < firePoints.Length; i++)
                 firePoints[i].gameObject.SetActive(true);
         }
-
         fireTimer += Time.deltaTime;
     }
 
@@ -47,22 +46,15 @@ public class WeaponLauncher : MonoBehaviour
     private void Fire()
     {
         fireTimer = 0;
-
-
         for (int i = 0; i < firePoints.Length; i++)
         {
             var shot = ProjectilePool.Get();
-            //shot.transform.parent = this.transform;
             shot.transform.position = firePoints[i].position;
             shot.transform.rotation = firePoints[i].rotation;
-            shot.gameObject.SetActive(true);
             if (hideOnLaunch)
                 firePoints[i].gameObject.SetActive(false);
         }
-
         OnFire(firePoints);
     }
-
-
 }
 

@@ -19,12 +19,14 @@ namespace PanettoneGames.Poseidon
         /// <param name="prentTransformName">[Optional] If ignored, all pool objects will be grouped into one parent transform</param>
         public void Prewarm(string prentTransformName = null)
         {
+            var pName = $"{name}- Pool";
+
             if (prentTransformName == null)
             {
-                var g = GameObject.Find(name);
+                var g = GameObject.Find(pName);
                 if (g == null)
                 {
-                    g = new GameObject(name);
+                    g = new GameObject(pName);
                 }
                 this.poolContainer = g.transform;
             }

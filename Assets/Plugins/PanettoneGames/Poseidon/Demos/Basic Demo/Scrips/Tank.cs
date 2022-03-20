@@ -1,5 +1,5 @@
 using UnityEngine;
-using PanettoneGames;
+using PanettoneGames.Poseidon;
 
 public class Tank : MonoBehaviour
 {
@@ -21,6 +21,5 @@ public class Tank : MonoBehaviour
         var shot = projectilePool.Get();
         shot.transform.position = firePoint.transform.position;
         shot.transform.rotation = firePoint.transform.rotation;
-        shot.gameObject.SetActive(true);
     }
 }

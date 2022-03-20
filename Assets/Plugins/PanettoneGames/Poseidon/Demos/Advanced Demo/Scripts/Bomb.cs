@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PanettoneGames.Poseidon;
+using UnityEngine;
 
 namespace PanettoneGames
 {
@@ -8,7 +9,7 @@ namespace PanettoneGames
         [SerializeField] [Range(10, 100)] float launchSpeed = 30f;
         [SerializeField] [Range(1, 10)] private float maxLifeTime = 5f;
         [SerializeField] [Tooltip("Remember to turn off particle play on awake")] ParticleSystem FX;
-        [SerializeField] [Tooltip("Typically, player's layer")] LayerMask ignoredLayers;
+        [SerializeField] [Tooltip("Typically, player's layer")] LayerMask layerMask;
 
         private float lifeTime;
         private Rigidbody rb;
@@ -39,14 +40,19 @@ namespace PanettoneGames
 
         private void OnCollisionEnter(Collision collision)
         {
-            if ((ignoredLayers & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer)
+            if ((layerMask & 1 << collision.gameObject.layer) != 1 << collision.gameObject.layer)
                 return;
 
-            rend.enabled = false;
-
-            if (FX != null)
+            //return to pool instead of destroy
+            if (FX == null)
+            {
+                Pool.ReturnToPool(gameObject);
+            }
+            else
+            {
                 FX.Play();
-            Pool?.ReturnToPool(this.gameObject, FX.main.duration);
+                Pool.ReturnToPool(gameObject, FX.main.duration);
+            }
         }
     }
 }

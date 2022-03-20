@@ -34,7 +34,7 @@ namespace PanettoneGames.Poseidon.Utilities
             if (firePoints == null || firePoints.Count == 0)
             {
                 var mt = new GameObject().transform;
-                mt.position = transform.position;
+                mt.position = transform.position + Vector3.forward;
                 mt.localScale = Vector3.one * 0.1f;
                 mt.parent = transform;
                 mt.name = "Fire Point";

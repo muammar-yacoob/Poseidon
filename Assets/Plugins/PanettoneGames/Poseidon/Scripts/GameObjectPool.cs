@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace PanettoneGames
+namespace PanettoneGames.Poseidon
 {
     [CreateAssetMenu(fileName = "New GameObject Pool", menuName = "Poseidon/GameObject Pool")]
     public class GameObjectPool : ScriptableObject

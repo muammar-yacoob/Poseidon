@@ -1,20 +1,26 @@
 using UnityEngine;
-using PanettoneGames;
 
-namespace PanettoneGames
+namespace PanettoneGames.Gameplay
 {
     public class Projectile : MonoBehaviour, IGameObjectPooled //implement interface
     {
-        private float LaunchSpeed = 20;
-        private float maxLifeTime = 2f;
+        [SerializeField] private float LaunchSpeed = 20;
+        [SerializeField] [Tooltip("In Seconds")] private float maxLifeTime = 3f;
+        [SerializeField] [Tooltip("In Seconds")] private WorldSpace worldSpace = WorldSpace._2D;
+
         private float lifeTime;
+        private Vector3 dir;
 
         public GameObjectPool Pool { get; set; } //implement interface
-        private void OnEnable() => lifeTime = 0;
+        private void OnEnable()
+        {
+            lifeTime = 0;
+            dir = worldSpace == WorldSpace._2D ? Vector3.up : Vector3.forward;
+        }
 
         void Update()
         {
-            transform.Translate(Vector3.forward * LaunchSpeed * Time.deltaTime);
+            transform.Translate(dir * LaunchSpeed * Time.deltaTime);
             lifeTime += Time.deltaTime;
 
             if (lifeTime > maxLifeTime)
@@ -25,5 +31,6 @@ namespace PanettoneGames
         {
             Pool?.ReturnToPool(this.gameObject);//return to pool instead of destroy
         }
+        private enum WorldSpace { _2D, _3D }
     }
 }

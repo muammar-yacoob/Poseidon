@@ -125,3 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7832b466c8c0413418fc54d12900437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LaunchSpeed: 20
+  maxLifeTime: 3
+  worldSpace: 1

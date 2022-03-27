@@ -37,6 +37,7 @@ public class ColoredHierarchy : MonoBehaviour
         {
             EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyWindowItemOnGUI;
         }
+        EditorApplication.RepaintHierarchyWindow();
     }
 
     private void OnDestroy()

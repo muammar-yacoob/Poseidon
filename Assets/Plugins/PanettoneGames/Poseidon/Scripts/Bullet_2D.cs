@@ -21,7 +21,7 @@ namespace PanettoneGames.Gameplay
             lifeTime += Time.deltaTime;
 
             if (lifeTime > maxLifeTime)
-                Pool.ReturnToPool(gameObject); //return to pool instead of destroy
+                Pool?.ReturnToPool(gameObject); //return to pool instead of destroy
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -32,12 +32,12 @@ namespace PanettoneGames.Gameplay
             //return to pool instead of destroy
             if (FX == null)
             {
-                Pool.ReturnToPool(gameObject);
+                Pool?.ReturnToPool(gameObject);
             }
             else
             {
                 FX.Play();
-                Pool.ReturnToPool(gameObject,FX.main.duration);
+                Pool?.ReturnToPool(gameObject,FX.main.duration);
             }
         }
     }

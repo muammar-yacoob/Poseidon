@@ -1,7 +1,8 @@
-using PanettoneGames.Poseidon.Utilities;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PanettoneGames.Poseidon.Utilities;
+using AudioManager = PanettoneGames.Poseidon.Utilities.AudioManager;
 
 namespace PanettoneGames.Poseidon.Menu
 {
@@ -98,6 +99,8 @@ namespace PanettoneGames.Poseidon.Menu
 
         [MenuItem("Tools/Poseidon/Enemy AI Pool Setup", true, 12)]
         static bool Validate_EnemyAIPoolSetup() => Selection.gameObjects.Length > 0 && !EditorApplication.isPlaying;
+
+
         private static bool HasBehaviour(GameObject activeObject)
         {
             var found = activeObject.GetComponent<PooledShootingBehaviour>() != null;
@@ -107,6 +110,27 @@ namespace PanettoneGames.Poseidon.Menu
             }
             return found;
         }
+
+        #region Audio Manager
+        [MenuItem("Tools/Poseidon/Audio Manager Setup", false, 13)]
+        public static void AudioManagerSetup()
+        {
+            var audioManager = FindObjectOfType<AudioManager>();
+            if (audioManager != null)
+            {
+                Debug.LogWarning($"Scene already contains {audioManager.name}");
+                return;
+            }
+
+            var mt = new GameObject();
+            mt.transform.position = Vector3.zero;
+            mt.AddComponent<AudioManager>();
+            mt.name = "Audio Manager";
+        }
+        [MenuItem("Tools/Poseidon/Audio Manager Setup", true, 13)]
+        static bool Validate_AudioManagerSetup() =>  !EditorApplication.isPlaying;
+        #endregion
+
 
         [MenuItem("Tools/Poseidon/Rate Please :)", false, 30)]
         public static void MenuRate() => Application.OpenURL($"https://assetstore.unity.com/packages/tools/utilities/poseidon-simple-pooling-system-201537?aid=1011lds77&utm_source=aff#reviews");
@@ -133,11 +157,13 @@ namespace PanettoneGames.Poseidon.Menu
         }
 
         [MenuItem(DEBUG_MENU_NAME, true)]
-        private static bool PerformActionValidation()
+        private static bool DebugMenuColors()
         {
             UnityEditor.Menu.SetChecked(DEBUG_MENU_NAME, isDebugColors);
             return true;
         }
+
+
         #endregion
     }
 }

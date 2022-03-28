@@ -1703,10 +1703,22 @@ PrefabInstance:
       propertyPath: ProjectilePool
       value: 
       objectReference: {fileID: 11400000, guid: 1bf3f2fab0f18e84a8f81d506aaef9ae, type: 2}
+    - target: {fileID: 2828818684443845597, guid: fd4cb8474f5065b49b9a1b08a1d62c0a, type: 3}
+      propertyPath: leftStick
+      value: 
+      objectReference: {fileID: -6592251284374663736, guid: d0ded976f2d5ca84d8017842456e722f, type: 3}
+    - target: {fileID: 2828818684443845597, guid: fd4cb8474f5065b49b9a1b08a1d62c0a, type: 3}
+      propertyPath: rightStick
+      value: 
+      objectReference: {fileID: -6446129677722968203, guid: d0ded976f2d5ca84d8017842456e722f, type: 3}
     - target: {fileID: 3573512924779058728, guid: fd4cb8474f5065b49b9a1b08a1d62c0a, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3573512924779058728, guid: fd4cb8474f5065b49b9a1b08a1d62c0a, type: 3}
+      propertyPath: fireButton
+      value: 
+      objectReference: {fileID: -7695084451505795677, guid: d0ded976f2d5ca84d8017842456e722f, type: 3}
     - target: {fileID: 3573512924779058728, guid: fd4cb8474f5065b49b9a1b08a1d62c0a, type: 3}
       propertyPath: ProjectilePool
       value: 

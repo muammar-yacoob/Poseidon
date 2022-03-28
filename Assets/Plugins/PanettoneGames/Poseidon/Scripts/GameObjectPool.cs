@@ -34,7 +34,6 @@ namespace PanettoneGames.Poseidon
             {
                 this.poolContainer = new GameObject($"{prentTransformName} - Pool").transform;
             }
-
             AddObjects(prewarmCount);
         }
 

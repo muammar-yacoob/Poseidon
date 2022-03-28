@@ -16,8 +16,8 @@ public class ColoredHierarchy : MonoBehaviour
 
     static ColoredHierarchy()
     {
-        iconActive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Editor/Resources/icons/fork_black.png", typeof(Texture2D)) as Texture2D;
-        iconInactive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Editor/Resources/icons/fork_white.png", typeof(Texture2D)) as Texture2D;
+        iconActive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Extras/Editor/Resources/icons/fork_black.png", typeof(Texture2D)) as Texture2D;
+        iconInactive = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Extras/Editor/Resources/icons/fork_white.png", typeof(Texture2D)) as Texture2D;
 
         fontColor = Color.blue;
         backgroundColor = Color.cyan;// new Color(0.5f,0.8f,0.8f);

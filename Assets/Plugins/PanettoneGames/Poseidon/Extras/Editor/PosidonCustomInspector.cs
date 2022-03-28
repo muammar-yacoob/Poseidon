@@ -20,7 +20,7 @@ namespace PanettoneGames.Poseidon.Menu
         void OnEnable()
         {
             skin = Resources.Load<GUISkin>("guiStyles/Default");
-            headerTexture = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Editor/Resources/icons/fork_header.png", typeof(Texture2D)) as Texture2D;
+            headerTexture = AssetDatabase.LoadAssetAtPath("Assets/Plugins/PanettoneGames/Poseidon/Extras/Editor/Resources/icons/fork_header.png", typeof(Texture2D)) as Texture2D;
 
             pooledBehaviour = target as PooledShootingBehaviour;
         }

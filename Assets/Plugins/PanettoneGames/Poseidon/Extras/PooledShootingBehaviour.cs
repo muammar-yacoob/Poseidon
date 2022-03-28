@@ -58,7 +58,10 @@ namespace PanettoneGames.Poseidon.Utilities
                 bullet.transform.position = firePoints[i].position;
                 bullet.transform.rotation = firePoints[i].rotation;
             }
-            OnFire?.Invoke(sFX);
+            if (sFX != null)
+            {
+                OnFire?.Invoke(sFX);
+            }
         }
 
         public void TestFire() => Fire();

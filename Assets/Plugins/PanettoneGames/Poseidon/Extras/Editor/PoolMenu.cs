@@ -12,7 +12,7 @@ namespace PanettoneGames.Poseidon.Menu
         private static GameObjectPool _playerPool;
         private static GameObjectPool _enemyPool;
         private static InputActionReference _inputActionReference;
-        private const string resourcesPath = @"Assets/Plugins/PanettoneGames/Poseidon/Assets/Resources/";
+        private const string resourcesPath = @"Assets/Plugins/PanettoneGames/Poseidon/Extras/Assets/Resources/";
         private const string playerPoolAssetPath = resourcesPath + "PlayerPool_3D.asset";
         private const string enemyAIPoolAssetPath = resourcesPath + "EnemyAIPool_3D.asset";
         private const string inputActionAssetPath = resourcesPath + "PoolGameControls.inputactions";

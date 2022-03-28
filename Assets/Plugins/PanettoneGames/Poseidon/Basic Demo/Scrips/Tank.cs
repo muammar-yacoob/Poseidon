@@ -5,16 +5,16 @@ public class Tank : MonoBehaviour
 {
     [SerializeField] private GameObjectPool projectilePool;
     [SerializeField] private Transform firePoint;
-    private float fireTimer = 1f;
+    private float fireTimer = 0.5f;
     private float timer;
+
+    private void Start() => projectilePool.Prewarm();
 
     void Update()
     {
-        //shooting
         if (timer > fireTimer) Shoot();
         timer += Time.deltaTime;
     }
-
     private void Shoot()
     {
         timer = 0;

@@ -669,7 +669,7 @@ MonoBehaviour:
   pool: {fileID: 11400000, guid: 1e54370452e830349a06c790ff0c0272, type: 2}
   firePoints:
   - {fileID: 454398530}
-  sFX: {fileID: 0}
+  sFX: {fileID: 8300000, guid: 6e80c2d8c1461404c9670631504ae3af, type: 3}
 --- !u!212 &1140165202
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -784,7 +784,7 @@ MonoBehaviour:
   pool: {fileID: 11400000, guid: 29285d77d6e725e488d6c6805e4e816c, type: 2}
   firePoints:
   - {fileID: 1881168126}
-  sFX: {fileID: 0}
+  sFX: {fileID: 8300000, guid: 6e80c2d8c1461404c9670631504ae3af, type: 3}
   fireButton: {fileID: 1427036254}
 --- !u!212 &1475934196
 SpriteRenderer:

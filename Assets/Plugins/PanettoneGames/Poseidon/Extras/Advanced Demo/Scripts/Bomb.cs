@@ -1,4 +1,4 @@
-﻿using PanettoneGames.Poseidon;
+﻿using PanettoneGames.Poseidon.Core;
 using UnityEngine;
 
 namespace PanettoneGames

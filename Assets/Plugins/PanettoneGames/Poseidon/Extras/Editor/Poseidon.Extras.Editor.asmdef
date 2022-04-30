@@ -1,0 +1,22 @@
+{
+    "name": "Poseidon.Extras.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:4cb603ba02f28184fbe9f71e27fdf92d",
+        "GUID:4b3522e3f71d9ad4cb079fff249a58e0",
+        "GUID:75cbc04c5faafff4aae5564ed718452c",
+        "GUID:7df7efd9215aeb045a42ae91553159d7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

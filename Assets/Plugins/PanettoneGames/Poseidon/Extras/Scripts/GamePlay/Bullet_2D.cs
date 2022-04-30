@@ -1,7 +1,7 @@
-using PanettoneGames.Poseidon;
+using PanettoneGames.Poseidon.Core;
 using UnityEngine;
 
-namespace PanettoneGames.Gameplay
+namespace PanettoneGames.Poseidon.Gameplay
 {
     public class Bullet_2D : MonoBehaviour, IGameObjectPooled //implement interface
     {

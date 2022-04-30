@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PanettoneGames.Poseidon.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,8 +15,16 @@ namespace PanettoneGames.Poseidon.Utilities
 
         public static Action<AudioClip> OnFire = delegate { };
         protected float timer;
-        private void Awake() => pool.Prewarm(transform.name);
-        public void SetPool(GameObjectPool poolAsset) => this.pool = poolAsset;
+        private void Awake()
+        {
+            pool.Prewarm(transform.name);
+        }
+
+        public void SetPool(GameObjectPool poolAsset)
+        {
+            this.pool = poolAsset;
+        }
+
         public void SetFirePoint()
         {
             //fetch and assign currently existing fire points
@@ -44,7 +53,11 @@ namespace PanettoneGames.Poseidon.Utilities
             }
         }
 
-        protected void FireButton(InputAction.CallbackContext ctx) => Fire();
+        protected void FireButton(InputAction.CallbackContext ctx)
+        {
+            Fire();
+        }
+
         protected void Fire()
         {
             if (firePoints.Count < 1)
@@ -64,6 +77,9 @@ namespace PanettoneGames.Poseidon.Utilities
             }
         }
 
-        public void TestFire() => Fire();
+        public void TestFire()
+        {
+            Fire();
+        }
     }
 }

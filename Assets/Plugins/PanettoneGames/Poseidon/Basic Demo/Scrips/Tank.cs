@@ -1,5 +1,5 @@
 using UnityEngine;
-using PanettoneGames.Poseidon;
+using PanettoneGames.Poseidon.Core;
 
 public class Tank : MonoBehaviour
 {
